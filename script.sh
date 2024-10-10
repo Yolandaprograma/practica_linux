@@ -4,7 +4,7 @@ cut -d',' -f1-11,13-15 supervivents.csv > primer_pas.csv
 
 awk -F ',' '$14 != "True" {print $0}' primer_pas.csv > segon_pas.csv 
 
-L1=$(wc -l primer_pas.csv) 
+L1=$(wc -l < primer_pas.csv) 
 
 L2=$(wc -l < segon_pas.csv) 
 
