@@ -13,7 +13,7 @@ L2=$(wc -l < segon_pas.csv)
 Resta=$((L1 - L2))
 echo "Les files eliminades son: $Resta" >> segon_pas.csv
 
-
+#Tercer pas
 awk 'BEGIN { FS=","; OFS="," }
 NR==1 { $15="ranking_Views"; print $0; next }
 {
