@@ -1,10 +1,10 @@
 #!/bin/bash
 awk -F',' '{ if (NF == 16) print $0 }' CAvideos.csv > supervivents.csv
 
-# Primer paso
+#Primer pas
 cut -d',' -f1-11,13-15 supervivents.csv > primer_pas.csv
 
-# Segundo paso
+#Segon pas
 awk -F ',' '$14 != "True" {print $0}' primer_pas.csv > segon_pas.csv
 
 
