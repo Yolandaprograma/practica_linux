@@ -1,5 +1,5 @@
 #!/bin/bash
-
+awk -F',' '{ if (NF == 16) print $0 }' CAvideos.csv > supervivents.csv
 
 # Primer paso
 cut -d',' -f1-11,13-15 supervivents.csv > primer_pas.csv
@@ -7,13 +7,13 @@ cut -d',' -f1-11,13-15 supervivents.csv > primer_pas.csv
 # Segundo paso
 awk -F ',' '$14 != "True" {print $0}' primer_pas.csv > segon_pas.csv
 
-# Contar filas
+
 L1=$(wc -l < primer_pas.csv)
 L2=$(wc -l < segon_pas.csv)
 Resta=$((L1 - L2))
 echo "Les files eliminades son: $Resta" >> segon_pas.csv
 
-# Tercer paso: Añadir columna ranking_Views
+
 awk 'BEGIN { FS=","; OFS="," }
 NR==1 { $15="ranking_Views"; print $0; next }
 {
@@ -26,13 +26,14 @@ NR==1 { $15="ranking_Views"; print $0; next }
   print $0
 }' segon_pas.csv > tercer_pas.csv
 
+#Quart pas
 input_file="tercer_pas.csv"
 output_file="sortida.csv"
 
-# Crear encabezado en el archivo de salida
+
 echo "video_id,trending_date,title,channel_title,category_id,publish_time,tags,views,likes,dislikes,comment_count,comments_disabled,ratings_disabled,video_error_or_removed,ranking_Views,Rlikes,Rdislikes" > "$output_file"
 
-# Procesar cada línea del archivo de entrada
+
 while IFS=',' read -r video_id trending_date title channel_title category_id publish_time tags views likes dislikes comment_count comments_disabled ratings_disabled video_error_or_removed ranking_Views; do
   if [ "$video_id" == "video_id" ]; then
     continue
@@ -50,7 +51,7 @@ while IFS=',' read -r video_id trending_date title channel_title category_id pub
 done < "$input_file"
 
 
-# Verifica si se proporcionó un parámetro
+#Cinquè pas
 if [ -n "$1" ]; then
   input="$1"
   if [ ! -f sortida.csv ]; then
