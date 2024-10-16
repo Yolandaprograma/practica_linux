@@ -89,5 +89,5 @@ if [ -n "$1" ]; then
       echo "Rdislikes: $Rdislikes"
     done
   fi
-  exit 0
+  exit
 fi
