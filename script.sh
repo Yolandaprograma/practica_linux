@@ -22,17 +22,18 @@ echo "Les files eliminades són: $Resta" >> segon_pas.csv  # Escriu el nombre de
 # Si les visualitzacions són iguals o menors a 1 milió, assigna "Excel·lent".
 # En altres casos, assigna "Bo".
 awk 'BEGIN { FS=","; OFS="," }
-NR==1 { $15="ranking_Views"; print $0; next }  # Afegeix l'encapçalament "ranking_Views"
+NR==1 { $15="ranking_Views"; print $0; next }
 {
-if ($8 > 10000000)
+  if ($8 > 10000000) {
     $15 = "Estrella";
-  else if ($8 <= 1000000)
+  } else if ($8 <= 1000000) {
     $15 = "Excel·lent";
-  else
+  } else {
     $15 = "Bo";
+  }
+
   print $0
 }' segon_pas.csv > tercer_pas.csv
-
 
 # Quart pas: Calcula el percentatge de "likes" i "dislikes" respecte a les visualitzacions i crea un arxiu final amb els resultats.
 # Crea l'arxiu de sortida sortida.csv amb l'encapçalament adequat.
