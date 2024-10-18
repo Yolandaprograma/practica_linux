@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Pas 0: Filtra les files de l'arxiu CAvideos.csv que tenen exactament 16 camps.
-# Després, les guarda en un arxiu anomenat supervivents.csv.
-awk -F',' '{ if (NF == 16) print $0 }' CAvideos.csv > supervivents.csv
-
-
 # Primer pas: Elimina la columna 12 i es queda només amb les columnes 1 a l'11 i de la 13 a la 15.
 # El resultat es guarda a primer_pas.csv.
 cut -d',' -f1-11,13-15 supervivents.csv > primer_pas.csv
