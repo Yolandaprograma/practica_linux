@@ -24,7 +24,7 @@ echo "Les files eliminades són: $Resta" >> segon_pas.csv  # Escriu el nombre de
 awk 'BEGIN { FS=","; OFS="," }
 NR==1 { $15="ranking_Views"; print $0; next }  # Afegeix l'encapçalament "ranking_Views"
 {
-  if ($8 > 10000000)
+if ($8 > 10000000)
     $15 = "Estrella";
   else if ($8 <= 1000000)
     $15 = "Excel·lent";
